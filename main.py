@@ -1,5 +1,6 @@
 from stats import word_counter
 from stats import letter_counter
+from stats import report
 
 def get_book_text(path):
     with open(path) as file:
@@ -10,11 +11,24 @@ def get_book_text(path):
 
 
 def main():
-    frank = get_book_text("books/frankenstein.txt")
+    path_name = "books/frankenstein.txt"
+    frank = get_book_text(path_name)
+
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {path_name}...")
+    print("----------- Word Count ----------")
 
     word_counter(frank)
-
+    print("--------- Character Count -------")
+    
     letters = letter_counter(frank)
-    print(letters)
+    letter_list = report(letters)
+
+    for letter in letter_list:
+        print(f"{letter['letter']}: {letter['num']}")
+
+    print("============= END ===============")
+
+
 
 main()

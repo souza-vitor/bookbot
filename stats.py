@@ -4,7 +4,7 @@ def word_counter(text):
     for word in text.split():
         num_words += 1
     
-    print(f"{num_words} words found in the document")
+    print(f"Found {num_words} total words")
 
 def letter_counter(text):
     text_sanitized = text.lower()
@@ -17,3 +17,16 @@ def letter_counter(text):
         else:
             letter_dict[text_sanitized[i]] += 1
     return letter_dict
+
+def sort_on(dict):
+    return dict["num"]
+
+def report(dict):
+    list_dict = []
+    
+    for item in dict:
+        if item.isalpha():
+            list_dict.append({"letter": item, "num": dict[item]})
+    
+    list_dict.sort(reverse=True, key=sort_on)
+    return list_dict
